@@ -1,0 +1,423 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf8">
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+    <meta name="description" content="{{Blog.Title}} - {{Blog.Description}}"/>
+    <meta name="keywords" content="design, overblog, theme"/>
+    <meta name="robots" content="index,follow"/>
+    <meta name="DC.Language" content="fr"/>
+    <link rel="shortcut icon" type="image/x-icon" href="http://fdata.over-blog.net/99/00/00/01/img/favicon.ico"/>
+    <link rel="icon" type="image/png" href="http://fdata.over-blog.net/99/00/00/01/img/favicon.png"/>
+    <link rel="alternate" type="application/rss+xml" title="Flux RSS des articles" href="{{Blog.RssUrl}}"/>
+    <link rel="mobile" href="http://{{Blog.url}}"/>
+    <title>{{Blog.Title}}</title>
+    <style>
+      /* Reset light */
+      body, div, table, ul, form, input {
+        padding: 0px;
+        margin: 0px;
+        font-family : Verdana;
+      }
+      .clear {
+        clear: both;
+      }
+      a {
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      /* Generic */
+      body {
+        background-color: #f0f7ff;
+        background-image: url(http://ddata.over-blog.com/3/82/65/02/css-kiwi/web/background.jpg);
+        background-repeat: no-repeat;
+        background-position: -695px -15px;
+        background-attachment: fixed;
+      }
+      h1, h2, h3, h4, a, a:visited {
+        color: #003dc4;
+      }
+      #global {
+        background-image: url(http://ddata.over-blog.com/3/82/65/02/css-kiwi/web/texture_global.png);
+        background-repeat: repeat;
+        margin-left: 225px;
+        min-width: 725px;
+      }
+      /* header */
+      #header {
+        background-image: url(http://ddata.over-blog.com/3/82/65/02/css-kiwi/web/header_left.png);
+        background-repeat: no-repeat;
+        min-height: 121px;
+        height: 121px;
+        padding-left: 205px;
+        padding-top: 45px;
+        padding-right: 30px;
+      }
+
+      #header h1 {
+        float: left;
+      }
+
+      #social {
+        margin-left: 0px;
+      }
+      #social span {
+        display: block;
+        width: 96px;
+        height: 120px;
+        float: right;
+        background-repeat: no-repeat;
+        margin: 10px;
+        margin-top: -20px;
+      }
+      #rss {
+        background-image: url(http://ddata.over-blog.com/3/82/65/02/css-kiwi/web/rss_logo.png);
+      }
+      #twitter {
+        background-image: url(http://ddata.over-blog.com/3/82/65/02/css-kiwi/web/twitter_logo.png);
+      }
+
+
+      /* Content */
+      #main {
+        margin-left: -25px;
+        padding-left: 25px;
+        background-position: 25px;
+        margin-right: 25px;
+        background-image: url(http://ddata.over-blog.com/3/82/65/02/css-kiwi/web/main.png);
+        background-repeat: repeat-y;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        box-shadow: 4px 4px 12px #aaa;
+      }
+
+
+      #main_content {
+        background-image: url(http://ddata.over-blog.com/3/82/65/02/css-kiwi/web/bottom.png);
+        background-repeat: no-repeat;
+        background-position: bottom left;
+        min-height: 600px;
+        padding-left: 190px;
+        padding-top: 25px;
+        padding-right: 15px;
+        padding-bottom: 15px;
+      }
+
+      #main_content ul {
+        padding-left: 25px;
+      }
+      #main_content li p {
+        padding: 0;
+        margin: 0;
+      }
+
+
+      .date, .smallDate {
+        color : #bbb;
+        float: right;
+        padding-top: 20px;
+      }
+
+      .smallDate {
+        display: none;
+      }
+      
+      .options {
+        padding: 10px 0;
+        color: #bbb;      
+      }
+      
+      .tags, .date, .smallDate {
+        text-align: right;
+        margin-top: -20px;
+      }
+      .tags li {
+        display:block;
+        float: right;
+        padding: 5px;
+        font-size: 12px;
+      }
+
+      #comments iframe {
+        border: 0;
+      }
+
+      /* footer */
+
+      #footer {
+        background-image: url(http://ddata.over-blog.com/3/82/65/02/css-kiwi/web/footer.png);
+        background-repeat: no-repeat;
+        background-position: 1px;
+        min-height: 230px;
+        padding-top: 25px;
+        padding-left: 180px;
+        padding-right: 45px;
+      }
+      
+      #footer p {
+        margin: 4px 0;
+        font-size: 13px;
+      }
+      #footer .fr {
+        background-image: url(http://ddata.over-blog.com/3/82/65/02/css-kiwi/web/fr.gif);
+      }
+      #footer .en {
+        background-image: url(http://ddata.over-blog.com/3/82/65/02/css-kiwi/web/en.jpg);
+      }
+      #footer .lang {
+        background-repeat: no-repeat;
+        padding-left: 30px;
+      }
+
+      #designedBy {
+        font-size: 11px;
+        text-align: right;
+      }
+
+      /* Widgets */
+      #widgets {
+        background-image: url(http://ddata.over-blog.com/3/82/65/02/css-kiwi/web/top_widgets.png);
+        background-repeat: no-repeat;
+        min-height: 124px;
+        padding-top: 25px;
+        width: 171px;
+        float: left;
+      }
+
+      #widgets h4 {
+        color: #fff;
+        padding-left: 10px;
+        margin-bottom: 8px;
+      }
+      #widgets a {
+        color: #fff;
+        font-size: 15px;
+      }
+
+      #widgets form {
+        padding-left: 15px;
+      }
+
+      #widgets ul {
+        padding-left: 25px;
+        list-style-type: none;
+      }
+
+      #search input {
+        background-color : #f1e9d8;
+        border: 1px solid #aaa;
+        border-radius: 10px 0 0 10px;
+        height: 22px;
+      }
+      #search input[type=submit] {
+        background-image: url(http://ddata.over-blog.com/3/82/65/02/css-kiwi/web/search_text.png);
+        background-repeat: no-repeat;
+        font-size:0px;
+        vertical-align: top;
+        width: 28px;
+        border-radius: 0 10px 10px 0;
+      }
+      #search input[type=text] {
+        color: #aaa;
+        padding: 0 5px;
+      }
+
+      /* Wide screen */
+      @media screen and (min-width: 1150px) {
+        body {
+          background-position: -560px -15px;
+        }
+        #global {
+          margin-left : 375px;
+        }
+      }
+
+      /* Little screen */
+      @media screen and (max-width: 1024px) {
+        body {
+          background-position: -740px -15px;
+        }
+        #global {
+          margin-left : 175px;
+        }
+        #global {
+          margin-left : 15px;
+        }
+        #social span {
+          width: 20px;
+          height: 20px;
+          margin: 10px 2px 0 2px;
+        }
+        #rss {
+          background-image: url(http://ddata.over-blog.com/3/82/65/02/css-kiwi/web/rss-small.jpg);
+        }
+        #twitter {
+          background-image: url(http://ddata.over-blog.com/3/82/65/02/css-kiwi/web/twitter-small.jpg);
+        }
+      }
+
+      /* Mobile */
+      @media screen and (max-width: 800px) {
+        body {
+          background-image: url(none);
+        }
+        #global{
+          min-width: 0px;
+          margin:0;
+        }
+        #widgets {
+          display: none;
+        }        
+        #header {
+          background-image: url(none);
+          background-repeat: no-repeat;
+          min-height: 40px;
+          height: 70px;
+          padding-left: 10px;
+          padding-top: 5px;
+          padding-right: 10px;
+        }
+        #social span {
+          display: block;
+          float: right;
+          background-repeat: no-repeat;
+          margin: 1px;
+          top: 0px;
+        }
+        #main {
+          margin-left: -10px;
+          padding-left: 10px;
+          margin-right: 0px;
+          background-image: url(none);
+          background-repeat: repeat-y;
+          background-color: #fff;
+          border: 1px solid #ddd;
+          box-shadow: 4px 4px 12px #aaa;
+        }
+  
+        #main_content {
+          background-image: url(none);
+          min-height: 0px;
+          padding-left: 10px;
+          padding-top: 25px;
+          padding-right: 15px;
+          padding-bottom: 15px;
+          width: 90%;
+        }
+        .article img {
+          max-width: 150px;
+        }
+        #footer {
+          background-image: url(none);
+          padding-left: 10px;
+          min-height: 40px;
+        }
+        .tags, .date, .smallDate {
+          text-align: right;
+          margin-top: -20px;
+          margin-right: 0px;
+        }
+        .smallDate {
+          display: block;
+        }
+        .date {
+          display: none;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="global">
+      <div id="header">
+        <h1>
+          <a href="{{Blog.Url}}" title="{{Blog.description}}">{{Blog.Title}}</a>
+        </h1>
+        <div id="social">
+          <a href="{{Blog.RssUrl}}" title="RSS {{Blog.Title}}"><span id="rss">&nbsp;</span></a>
+          <a href="http://www.twitter.com/{{Blog.TwitterUsername}}" title="Follow {{Blog.TwitterUsername}} on Twitter"><span id="twitter">&nbsp;</span></a>
+        </div>
+      </div>
+      <div id="main">
+        <div id="widgets">
+          <form action="{{Blog.Url}}/search" method="get" target="_blank" id="search">
+            <input type="hidden" name="ref" value="3336499" />
+            <input name="query" size="11" maxlength="255" value="Search" type="text"
+              onclick="if(this.value=='Search')this.value='';"
+              onblur="if(this.value=='')this.value='Search';"
+              /><input type="submit" value="Search" class="button"/>
+          </form>
+          <h4>Topics</h4>
+            <ul>
+              <li><a href="{{Blog.Url}}/tag/quality">Quality</a></li>
+              <li><a href="{{Blog.Url}}/tag/css">CSS</a></li>
+              <li><a href="{{Blog.Url}}/tag/theming">Theming</a></li>
+            </ul>
+        </div>
+        <div id="content">
+          <div id="main_content">
+            {% list Posts %}
+              <div class="article">
+                <div class="date">{{Post.Date|date('l j F Y')}}</div>
+                <div class="smalldate">{{Post.Date|date('Y-m-d')}}</div>
+                <h2>
+                    <a href="{{Post.Permalink}}" title="{{Post.Title}}">{{Post.Title}}</a>
+                </h2>
+                <div class="contenuArticle">
+                  {{Post.Body}}
+                  <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+                <div class="options">
+                  {% if Post.AuthorName %}
+                    <span class="publishedBy">written by {{Post.AuthorName}}</span>
+                  {% endif %}
+                  {% if isIndex or isTag or isSearch %}
+                    <span class="seeComments"><a href="{{Post.Permalink}}#comments">See coments</a></span>
+                  {% endif %}
+                  {% if Post.Tags %}
+                    <div class="tags">
+                      <ul>
+                        {% list Post.Tags %}
+                          <li>#<a href="{{Tag.Url}}" title="{{Tag.name}}">{{Tag.name}}</a></li>
+                        {% endlist %}
+                      </ul>
+                    </div>
+                  {% endif %}
+                  <br>
+                  {% if isSingle %}
+                    <a name="comments"></a>
+                    <div id="comments">
+                      {{Post.Comments}}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endlist %}
+
+            {% if isIndex or isTag or isSearch %}
+              <div class="pagination center">
+                {% if Navigation.PreviousPage %}
+                  <a class="textPrevious" rel="previous" href="{{Navigation.PreviousPage}}">{{ Lang.PreviousPage }}</a>
+                {% endif %}
+                {% if Navigation.NextPage %}
+                  <a class="textNext" rel="next" href="{{Navigation.NextPage}}">{{ Lang.NextPage }}</a>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+      <div id="footer">
+        <p><a href="{{Blog.Url}}">{{Blog.Title}}</a>  - {{Blog.Description}}</p>
+        <p class="lang en">The content of this blog is not free : to use it, please make a back link to the blog or a post.</p>
+        <p class="lang fr">Le contenu de ce blog n'est pas libre : si vous l'utilisez, merci d'ajouter un lien vers le blog ou l'article concerné.</p>
+        <div id="designedBy">Design by <a href="http://twitter.com/fabrice31">fabrice31</a></div>
+      </div>
+    </div>
+  </body>
+</html>
