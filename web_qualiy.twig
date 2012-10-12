@@ -83,6 +83,14 @@
         {% endif %}
 
 
+        {% if Navigation.PreviousPage is not empty %}
+            <link rel="prev" href="{{ Navigation.PreviousPage }}"/>
+        {% endif %}
+        {% if Navigation.NextPage is not empty %}
+            <link rel="next" href="{{ Navigation.NextPage }}"/>
+        {% endif %}
+
+
         <!-- jquery -->
         <script src="http://assets.over-blog-kiwi.com/themes/14/js/jquery-1.7.1.min.js"></script>
         <script src="http://assets.over-blog-kiwi.com/themes/14/js/modernizr.js"></script>
