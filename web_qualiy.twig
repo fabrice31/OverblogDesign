@@ -350,6 +350,10 @@
                 background: url("http://assets.over-blog-kiwi.com/themes/1/images/social-rss.png") no-repeat scroll 0 3px transparent; 
                 padding-left: 40px;
             }
+            .social .gplus {
+                background: url("http://idata.over-blog.com/3/82/65/02/kiwi/gplus.png") no-repeat scroll 0 3px transparent; 
+                padding-left: 40px;
+            }
             .social li {
                 border-bottom: 1px dashed #aaa;
                 padding-bottom: 5px;
@@ -588,7 +592,10 @@
                         <h3>{{ Lang.Get('Follow me') }}</h3>
                         <ul>
                             <li class="twitter">
-                                <a href="http://twitter.com/{{ Custom('twitter_account') }}">{{ Lang.Get('Follow me on') }} Twitter</a>
+                                <a href="http://twitter.com/{{ Custom('twitter_account') }}">Twitter</a>
+                            </li>
+                            <li class="gplus">
+                                <a href="https://plus.google.com/104493142924184161356" rel="publisher">Google+</a>
                             </li>
                             <li class="rss">
                                 <a href="{{ Blog.RssUrl }}">Flux RSS</a>
