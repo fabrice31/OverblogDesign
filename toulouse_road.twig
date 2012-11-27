@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ Blog.Lang|default('en') }}">
-	<head>
+    <head>
 		<!-- shortcut:[Meta] -->
 	  	<!-- title, description, keyword, robots -->
 		{% if isSingle%}
@@ -8,7 +8,11 @@
 				<title>{% if Post.Title is not empty %}{{ Post.Title }} - {% elseif Post.Snippet is not empty %}{{ Post.Snippet|truncate(80) }} - {% endif %}{{Blog.Title}}</title>
 				<meta name="description" content="{{ Post.Snippet }}" />
 				<meta name="keywords" content="{% list Post.Tags %}{{ Tag.Title }}{% if loop.last == false %}, {% endif %}{% endlist %}" />
-				<meta name="robots" content="index,follow" />
+                {% if Post.getFirstSource != 'TW' %}
+    				<meta name="robots" content="index,follow" />
+                {% else %}
+                    <meta name="robots" content="noindex" />
+                {% endif %}
 			{% endlist %}
 		{% elseif isTag and Tag is not empty %}
 			<title>{{ Tag.Title|title }} - {{Blog.Title}}</title>
@@ -306,6 +310,10 @@
 			.item .post p {margin-bottom: 10px;}
 			.item .post.link p {margin-bottom: 10px;}
 			.item .post.link a{font-size: 18px; background: url("http://assets.over-blog-kiwi.com/themes/13/images/picto-originalpost.png") 0 4px no-repeat; padding-left: 15px; margin-left: 20px;}
+
+    		.ob-repost {border: 1px solid #DDD; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-weight: bold; padding: 0.5em 0.8em; text-align: center;}
+			.ob-repost .ob-link {text-decoration: underline;}
+
 
 			/* Sections */
 			.ob-section-text {margin-top: 10px; margin-bottom: 10px;}
@@ -630,7 +638,7 @@
 			<div class="wrap single">
 				{% if isSingle%}
 					{% list Posts %}
-						<div class="item{% list Post.Sources %} {{ Source }}{% endlist %}">
+						<div class="item {{ Post.getFirstSource }}">
 							<div class="title">
 								<span class="icon"></span>
 								<h2>{{ Post.Title }}</h2>
@@ -795,7 +803,7 @@
 						{# left col #}
 						<div class="items left">
 							{% list Posts %}
-								<div class="item{% list Post.Sources %} {{ Source }}{% endlist %}" style="display:none;">
+								<div class="item {{ Post.getFirstSource }}" style="display:none;">
 									<span class="corner"></span>
 									<header class="title">
 										<span class="icon"></span>
