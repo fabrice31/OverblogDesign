@@ -41,14 +41,14 @@
                 <meta property="og:title" content="{{ Post.Title }}"/>
                 {% if Post.Cover %}
                     <meta property="og:image" content="{{ Post.Cover }}"/>
-                    <meta itemprop="image" content="{{ Post.Cover }}" />
+                    <meta itemprop="thumbnailUrl" content="{{ Post.Cover }}" />
                 {% endif %}
             {% endlist %}
         {% else %}
            <meta property="og:title" content="{{ Blog.Title }}" />
             {% if Blog.Avatar %}
                 <meta property="og:image" content="{{ Blog.Avatar }}"/>
-                <meta itemprop="image" content="{{ Blog.Avatar }}" />
+                <meta itemprop="thumbnailUrl" content="{{ Blog.Avatar }}" />
             {% endif %}
         {% endif %}
 
@@ -492,7 +492,8 @@
                     {% endif %}"
                     >
                     <a  href="{{ PostsTag.Url }}"
-                        title="{{ PostsTag.Title }}">
+                        title="{{ PostsTag.Title }}"
+                        itemprop="about">
                         {{ PostsTag.Title|title }}
                     </a>
                 </li>
@@ -517,41 +518,43 @@
                     </div>
                 {% endif %}
                 {% list Posts %}
-                    <time class="date" datetime="{{ Post.Date }}">{{ Post.Date|date("d / m / Y") }}</time>
-                    <div class="post {% list Post.Sources %}{{ Source }}{% endlist %}" itemscope="" itemtype="http://schema.org/BlogPosting">
-                        <h2 class="title"><a href="{{ Post.PermaLink }}" title="{{ Post.Snippet|title }}">
-                            {% if Post.Title is not empty %}
-                                {{ Post.Title }}
-                            {% elseif Post.Snippet is not empty %}
-                                {{ Post.Snippet|truncate(40) }}
-                            {% endif %}
-                        </a></h2>
-                        <div class="entry clearfix" itemscope="" itemprop="http://schema.org/Article">
-                            {{ Post.Body }}
-                        </div>
-                        <p class="meta">
-                            {% if Post.Author and Post.Author is not empty %}
-                                <span class="posted">Publié par {{Post.Author}}</span> à {{ Post.Date|date("H:i") }}
-                            {% endif %}
-                            {% if not isSingle %} -
-                                <a href="{{ Post.Permalink }}#comments">Commentaires ({{ Post.CommentCount('', '') }})</a>
-                            {% endif %}
-                            {% if Post.Tags is not empty %} -
-                                {% list Post.Tags %}
-                                    #<a href="{{ Tag.Url|title }}">{{ Tag.Title|title }}</a>{% if loop.last == false %}, {% endif %}
-                                {% endlist %}
-                            {% endif %}
-                        </p>
-                        {% if isSingle %}
-                            <a href="https://twitter.com/share" class="twitter-share-button" data-via="fabrice31">Tweet</a>
-                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                            <g:plusone size="small"></g:plusone>
+                    <div itemscope="" itemtype="BlogPosting">
+                        <time class="date" datetime='{{ Post.Date|date("Y-m-d") }}' itemprop="datePublished">{{ Post.Date|date("d / m / Y") }}</time>
+                        <div class="post {% list Post.Sources %}{{ Source }}{% endlist %}">
+                            <h2 class="title" itemprop="name"><a href="{{ Post.PermaLink }}" title="{{ Post.Snippet|title }}" itemprop="url" rel="bookmark">
+                                {% if Post.Title is not empty %}
+                                    {{ Post.Title }}
+                                {% elseif Post.Snippet is not empty %}
+                                    {{ Post.Snippet|truncate(40) }}
+                                {% endif %}
+                            </a></h2>
+                            <div class="entry clearfix" itemprop="ArticleBody">
+                                {{ Post.Body }}
+                            </div>
+                            <p class="meta">
+                                {% if Post.Author and Post.Author is not empty %}
+                                    <span class="posted">Publié par {{Post.Author}}</span> à {{ Post.Date|date("H:i") }}
+                                {% endif %}
+                                {% if not isSingle %} -
+                                    <a href="{{ Post.Permalink }}#comments">Commentaires ({{ Post.CommentCount('', '') }})</a>
+                                {% endif %}
+                                {% if Post.Tags is not empty %} -
+                                    {% list Post.Tags %}
+                                        #<a href="{{ Tag.Url|title }}" itemprop="keywords">{{ Tag.Title|title }}</a>{% if loop.last == false %}, {% endif %}
+                                    {% endlist %}
+                                {% endif %}
+                            </p>
+                            {% if isSingle %}
+                                <a href="https://twitter.com/share" class="twitter-share-button" data-via="fabrice31">Tweet</a>
+                                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                                <g:plusone size="small"></g:plusone>
 
-                            {% if not isPage %}
-                                <a name="comments" ></a>
-                                {{ Post.Comments }}
+                                {% if not isPage %}
+                                    <a name="comments" ></a>
+                                    {{ Post.Comments }}
+                                {% endif %}
                             {% endif %}
-                        {% endif %}
+                        </div>
                     </div>
                 {% endlist %}
             </div>
@@ -594,14 +597,14 @@
                     </div>
                 {% endif %}
                 {% if Custom('hide_bio') is empty and Custom('hide_bio') == false %}
-                    <div class="widget bio">
+                    <div class="widget bio"  itemscope="" itemtype="http://schema.org/Person">
                         <div class="photo">
-                            <img alt="Avatar" src="http://idata.over-blog.com/3/82/65/02/kiwi/qualite.png" />
+                            <img alt="Avatar" src="http://idata.over-blog.com/3/82/65/02/kiwi/qualite.png" itemprop="image"/>
                         </div>
                         <h3>Qui suis-je ?</h3>
                         <ul>
-                            <li>Fabrice31</li>
-                            <li>Je suis responsable qualité depuis 2007.
+                            <li itemprop="name">Fabrice31</li>
+                            <li itemprop="description">Je suis responsable qualité depuis 2007.
                                 <br/>Je travaille essentiellement pour <a href="http://www.over-blog.com" target="_blank">OverBlog</a>,
                                 mais je fournis également des conseils dans le domaine à d'autres sociétés.</li>
                         </ul>
