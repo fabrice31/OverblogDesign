@@ -518,7 +518,7 @@
                     </div>
                 {% endif %}
                 {% list Posts %}
-                    <div itemscope="" itemtype="BlogPosting">
+                    <div itemscope="" itemtype="http://schema.org/BlogPosting">
                         <time class="date" datetime='{{ Post.Date|date("Y-m-d") }}' itemprop="datePublished">{{ Post.Date|date("d / m / Y") }}</time>
                         <div class="post {% list Post.Sources %}{{ Source }}{% endlist %}">
                             <h2 class="title" itemprop="name"><a href="{{ Post.PermaLink }}" title="{{ Post.Snippet|title }}" itemprop="url" rel="bookmark">
