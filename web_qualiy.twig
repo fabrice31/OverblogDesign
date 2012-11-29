@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="{{ Blog.Lang | default('en') }}">
+<html lang="{{ Blog.Lang | default('en') }}" itemscope="" itemtype="http://schema.org/Blog">
     <head>
         <!-- shortcut:[Meta] -->
         <!-- title, description, keyword, robots -->
@@ -29,7 +29,7 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
 
-        <!-- Social setting : Facebook, G+ .. --> 
+        <!-- Social setting : Facebook, G+ .. -->
         <meta property="og:site_name" content="{{ Blog.Title }}" />
         <meta property="og:type" content="blog" />
         <meta property="fb:app_id" content="{% if Custom('facebook_appid') is not empty %}{{ Custom('facebook_appid') }}{% endif %}" />
@@ -39,16 +39,13 @@
         {% if isSingle %}
             {% list Posts %}
                 <meta property="og:title" content="{{ Post.Title }}"/>
-                <meta itemprop="description" content="{{ Post.Snippet }}" />
                 {% if Post.Cover %}
                     <meta property="og:image" content="{{ Post.Cover }}"/>
                     <meta itemprop="image" content="{{ Post.Cover }}" />
                 {% endif %}
             {% endlist %}
-            <meta property="og:type" content="overblogkiwi:see" />
         {% else %}
-           <meta property="og:title" content="{{ Blog.Title }}"/>
-            <meta itemprop="description" content="{{ Blog.Description }}" />
+           <meta property="og:title" content="{{ Blog.Title }}" />
             {% if Blog.Avatar %}
                 <meta property="og:image" content="{{ Blog.Avatar }}"/>
                 <meta itemprop="image" content="{{ Blog.Avatar }}" />
@@ -66,20 +63,16 @@
 
         <meta name="string:facebook_appid:Enter your FaceBook App ID" group="Settings" />
         <meta name="string:google_webmaster_id:Enter your Google Webmaster Tools ID" group="Settings" />
-        <meta name="string:msn_webmaster_id:Enter your MSN Webmaster Tools ID" group="Settings" />
         <meta name="string:twitter_account:Enter your Twitter Account" group="Settings" />
 
 
         <!-- shortcut:[Includes] -->
-        <!-- favicon -->        
+        <!-- favicon -->
         <link rel="icon" type="image/png" href="{{ Blog.FaviconUrl }}" />
 
         <!-- SEO -->
         {% if Custom('google_webmaster_id') is not empty %}
             <meta name="google-site-verification" content="{{ Custom('google_webmaster_id') }}" />
-        {% endif %}
-        {% if Custom('msn_webmaster_id') is not empty %}
-            <meta name="msvalidate.01" content="{{ Custom('msn_webmaster_id') }}" />
         {% endif %}
 
 
@@ -146,7 +139,7 @@
                 border-radius: 15px;
                 margin: 30px auto;
             }
-            
+
             /* Contact ---------------------------------------------- */
             .contact {
                 width: 99%;
@@ -176,7 +169,7 @@
                 margin-bottom: 20px;
             }
             .header h1 {
-                font: normal bold 36px Tahoma, sans-serif;
+                font: normal bold 32px Tahoma, sans-serif;
                 margin-bottom: 5px;
                 line-height: 1.2em;
             }
@@ -186,12 +179,12 @@
                 margin-bottom: 15px;
             }
             .menu {
-                display: block; 
+                display: block;
                 margin: -10px 0 45px -2px;
                 padding: 0;
             }
             .menu li {
-                display: inline; 
+                display: inline;
                 margin: 0 2px;
                 padding: 10px 15px 10px 15px;
                 border-radius: 0 0 10px 10px;
@@ -215,7 +208,7 @@
 
             /* Posts ----------------------------------------------- */
             .date {
-                text-transform: uppercase; 
+                text-transform: uppercase;
                 padding-left: 10px;
                 font-size: 80%;
             }
@@ -233,11 +226,8 @@
             }
             .FB {background-image: url("http://assets.over-blog-kiwi.com/themes/13/images/social-facebook.png");}
             .TW {background-image: url("http://assets.over-blog-kiwi.com/themes/13/images/social-twitter.png");}
-            .IG {background-image: url("http://assets.over-blog-kiwi.com/themes/13/images/social-instagram.png");}
-            .FS {background-image: url("http://assets.over-blog-kiwi.com/themes/13/images/social-foursquare.png");}
             .YT {background-image: url("http://assets.over-blog-kiwi.com/themes/13/images/social-youtube.png");}
-            .FL {background-image: url("http://assets.over-blog-kiwi.com/themes/13/images/social-flickr.png");}
-			.OB {background-image: url("http://assets.over-blog-kiwi.com/themes/13/images/social-overblog.png");}
+    		.OB {background-image: url("http://assets.over-blog-kiwi.com/themes/13/images/social-overblog.png");}
             .meta {
                 color: #999;
             }
@@ -311,7 +301,7 @@
             .snippet-wrap pre.sh_sourceCode {
                 line-height: 1.1em;
             }
-            
+
             /* Footer ----------------------------------------------- */
             .footer {
                 -moz-border-radius: 15px;
@@ -343,15 +333,15 @@
                 list-style: none;
             }
             .social .twitter {
-                background: url("http://assets.over-blog-kiwi.com/themes/1/images/social-twitter.png") no-repeat scroll 0 3px transparent; 
+                background: url("http://assets.over-blog-kiwi.com/themes/1/images/social-twitter.png") no-repeat scroll 0 3px transparent;
                 padding-left: 40px;
             }
             .social .rss {
-                background: url("http://assets.over-blog-kiwi.com/themes/1/images/social-rss.png") no-repeat scroll 0 3px transparent; 
+                background: url("http://assets.over-blog-kiwi.com/themes/1/images/social-rss.png") no-repeat scroll 0 3px transparent;
                 padding-left: 40px;
             }
             .social .gplus {
-                background: url("http://idata.over-blog.com/3/82/65/02/kiwi/gplus.png") no-repeat scroll 0 3px transparent; 
+                background: url("http://idata.over-blog.com/3/82/65/02/kiwi/gplus.png") no-repeat scroll 0 3px transparent;
                 padding-left: 40px;
             }
             .social li {
@@ -377,28 +367,28 @@
 
             /* Search ----------------------------------------------- */
             .search {
-                float: right; 
+                float: right;
                 position: relative;
                 top: 10px;
             }
             .search img {
                 width: 120px;
-                margin-right: 25px;                
+                margin-right: 25px;
             }
             .search input[type="text"] {
                 -moz-border-radius: 5px;
                 -webkit-border-radius: 5px;
                 -goog-ms-border-radius: 5px;
                 border-radius: 5px;
-                height: 19px; 
-                padding: 5px 10px; 
-                width: 152px; 
+                height: 19px;
+                padding: 5px 10px;
+                width: 152px;
                 background: #eec;
                 color: #333;
                 border: 1px solid white;
             }
 
-            
+
             /* coloration -------------------------------------------*/
             body {
                 color: #444;
@@ -445,7 +435,7 @@
                     display: none!important;
                 }
             }
-            
+
             @media screen and (min-width: 791px) {
                 .content {
                     padding: 15px;
@@ -481,9 +471,9 @@
                     <form class="search" method="post" action="/search/">
                         <input type="text" name="q" placeholder="{{ Lang.Get('Search') }}..." value="{% if isSearch %}{{ Search }}{% endif %}" />
                     </form>
-                    <img src="http://idata.over-blog.com/3/82/65/02/kiwi/qualite.png" />
+                    <img src="http://idata.over-blog.com/3/82/65/02/kiwi/qualite.png" alt="Logo Web qualité"/>
                 </div>
-                <h1><a href="{{ Blog.Url }}" title="{{ Blog.Description }}">{{ Blog.Title }}</a></h1>
+                <h1><a href="{{ Blog.Url }}" title="{{ Blog.Description }}">Web qualité - Blog d'un testeur</a></h1>
                 {% if Blog.Description is not empty %}
                     <p class="description">{{ Blog.Description }}</p>
                 {% endif %}
@@ -492,7 +482,7 @@
             <ul class="menu">
                 <li {% if isIndex %}class="active"{% endif %}>
                     <a  href="{{ Blog.Url }}"
-                        title="{{ Blog.Title }}">
+                        title="{{ Blog.Description }}">
                         {{ Lang.Get('Home') }}
                     </a>
                 </li>
@@ -527,23 +517,23 @@
                     </div>
                 {% endif %}
                 {% list Posts %}
-                    <div class="date" itemprop="startDate" datetime="{{ Post.Date|date("Y-m-d H:i")}}">{{ Post.Date|date("d / m / Y") }}</div>
-                    <div class="post {% list Post.Sources %}{{ Source }}{% endlist %}" itemscope itemtype="http://schema.org/BlogPosting">
+                    <time class="date" datetime="{{ Post.Date }}">{{ Post.Date|date("d / m / Y") }}</time>
+                    <div class="post {% list Post.Sources %}{{ Source }}{% endlist %}" itemscope="" itemtype="http://schema.org/BlogPosting">
                         <h2 class="title"><a href="{{ Post.PermaLink }}" title="{{ Post.Snippet|title }}">
                             {% if Post.Title is not empty %}
                                 {{ Post.Title }}
                             {% elseif Post.Snippet is not empty %}
                                 {{ Post.Snippet|truncate(40) }}
-                            {% endif %}        
+                            {% endif %}
                         </a></h2>
-                        <div class="entry clearfix">
+                        <div class="entry clearfix" itemscope="" itemprop="http://schema.org/Article">
                             {{ Post.Body }}
                         </div>
                         <p class="meta">
                             {% if Post.Author and Post.Author is not empty %}
-                                <span class="posted">Publié par {{Post.Author}}</span> à {{ Post.Date|date("H:i") }} 
+                                <span class="posted">Publié par {{Post.Author}}</span> à {{ Post.Date|date("H:i") }}
                             {% endif %}
-                            {% if not isSingle %} - 
+                            {% if not isSingle %} -
                                 <a href="{{ Post.Permalink }}#comments">Commentaires ({{ Post.CommentCount('', '') }})</a>
                             {% endif %}
                             {% if Post.Tags is not empty %} -
@@ -568,9 +558,9 @@
 
             <div class="pagination">
                 {% if Navigation.PreviousPage is not empty %}
-                    <a href="{{ Navigation.PreviousPage }}" class="prev">Page précédente</a>&nbsp;| 
+                    <a href="{{ Navigation.PreviousPage }}" class="prev">Page précédente</a>&nbsp;|
                 {% elseif Navigation.PreviousPost is not empty %}
-                    <a href="{{ Navigation.PreviousPost.Permalink }}" title="{{ Navigation.PreviousPost.Title }}" class="prev">Article précédent</a>&nbsp;| 
+                    <a href="{{ Navigation.PreviousPost.Permalink }}" title="{{ Navigation.PreviousPost.Title }}" class="prev">Article précédent</a>&nbsp;|
                 {% endif %}
                 <a href="{{ Blog.Url }}" class="home">{{ Lang.Get('Home') }}</a>&nbsp;|&nbsp;
                 <a href="#" class="home">Haut de page</a>
@@ -595,7 +585,7 @@
                                 <a href="http://twitter.com/{{ Custom('twitter_account') }}">Twitter</a>
                             </li>
                             <li class="gplus">
-                                <a href="https://plus.google.com/108273942051068886142" rel="publisher">Google+</a>
+                                <a href="https://plus.google.com/104493142924184161356/?rel=author" rel="publisher">Google+</a>
                             </li>
                             <li class="rss">
                                 <a href="{{ Blog.RssUrl }}">Flux RSS</a>
@@ -611,8 +601,8 @@
                         <h3>Qui suis-je ?</h3>
                         <ul>
                             <li>Fabrice31</li>
-                            <li>Je suis responsable qualité depuis 2007. 
-                                <br/>Je travaille essentiellement pour <a href="http://www.over-blog.com" target="_blank">OverBlog</a>, 
+                            <li>Je suis responsable qualité depuis 2007.
+                                <br/>Je travaille essentiellement pour <a href="http://www.over-blog.com" target="_blank">OverBlog</a>,
                                 mais je fournis également des conseils dans le domaine à d'autres sociétés.</li>
                         </ul>
                     </div>
@@ -623,7 +613,7 @@
                             <ul id="archivelist">
                               {% list Blog.Archives %}
                               <li>
-                                <a href="#" class"plustext" onclick="return switch_arch('{{Archive.Year}}')">{{Archive.Year}}</a>
+                                <a href="#" class="plustext" onclick="return switch_arch('{{Archive.Year}}')">{{Archive.Year}}</a>
                                 <ul id="arch_{{Archive.Year}}" class="arch_month">
                                 {% list Archive.Months%}
                                     {% if Month.PostCount > 0 %}
@@ -699,7 +689,7 @@
           })();
         </script>
         <!-- snipper pour coloration syntaxique -->
-        <script type="text/javascript" src="http://ddata.over-blog.com/3/82/65/02/assets/jquery.snippet.min.js"></script>        
+        <script type="text/javascript" src="http://ddata.over-blog.com/3/82/65/02/assets/jquery.snippet.min.js"></script>
 
     </body>
 </html>
