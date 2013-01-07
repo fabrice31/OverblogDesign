@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" itemscope="" itemtype="http://schema.org/Blog">
     <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <!-- shortcut:[Meta] -->
         <!-- title, description, keyword, robots -->
         {% if isSingle%}
@@ -26,7 +27,6 @@
             <meta name="robots" content="index,follow" />
             <meta name="keywords" content="{% list Blog.PostsTags(15, SORT_POSTS_NUMBER_DESC) %}{{ PostsTag.Title }}{% if loop.last == false %}, {% endif %}{%endlist%}" />
         {% endif %}
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
         <!-- Social setting : Facebook, G+ .. -->
         <meta property="og:site_name" content="{{ Blog.Title }}" />
@@ -65,7 +65,7 @@
                 {% endlist %}
             {% endif %}
         {% endif %}
-        <link href="https://plus.google.com/104493142924184161356/?rel=author" />
+        <link href="https://plus.google.com/104493142924184161356/?rel=author" rel="author" title="A propos de l'éditeur"/>
 
         <!-- shortcut:[Includes] -->
         <!-- favicon -->
@@ -285,7 +285,7 @@
                     .ob-section-quote .ob-quote p:before {color: {{ Custom('custom_highlight_font_color')|default('#F7BC78') }}; margin: 19px 0 0 -85px;}
                     .ob-section-quote .ob-quote p:after {color: {{ Custom('custom_highlight_font_color')|default('#F7BC78') }}; margin: 53px 0 0;}
                     .ob-section-quote p.ob-author,
-                    .ob-section-quote p.ob-source {background: #EEE; color: gray; font-size: 14px; font-style: italic; margin: 25px 0 0; max-height: 24px; max-width: 510px; overflow: hidden; padding-bottom: 0\9; position: relative; text-overflow: ellipsis; white-space: nowrap; z-index: 11;}
+                    .ob-section-quote p.ob-source {background: #EEE; color: gray; font-size: 14px; font-style: italic; margin: 25px 0 0; max-height: 24px; max-width: 510px; overflow: hidden; padding-bottom: 10px; position: relative; text-overflow: ellipsis; white-space: nowrap; z-index: 11;}
                     .ob-section-quote p.ob-author .ob-link,
                     .ob-section-quote p.ob-source .ob-link {color: gray;}
                     .ob-section-quote p.ob-author .ob-link:hover,
@@ -298,7 +298,7 @@
                     .ob-section-link p.ob-title {margin-left: 20px; max-height: 42px; overflow: hidden; padding-bottom: 0 !important}
                     .ob-section-link p.ob-title .ob-link {color: {{ Custom('custom_highlight_font_color') }};}
                     .ob-section-link p.ob-snippet {margin-bottom: 35px; margin-left: 20px; max-height: 35px; overflow: hidden;}
-                    .ob-section-link p.ob-url {background: #EEE; color: gray; margin: 0; max-height: 24px; max-width: 390px; padding-bottom: 0\9;}
+                    .ob-section-link p.ob-url {background: #EEE; color: gray; margin: 0; max-height: 24px; max-width: 390px; padding-bottom: 10px;}
                     .ob-section-link .ob-desc {margin-top: 5px;}
 
                     /* Section audio */
@@ -488,12 +488,15 @@
                                 <li {% if isTag %} class="active"{% endif %}>
                                     <a href="#">Menu</a>
                                     <ul>
-                                            <li><a href="/tag/chuck" itemprop="about">Chuck</a></li>
+                                            <li><a href="/tag/chuck/" itemprop="about">Chuck</a></li>
                                             <li><a href="/tag/code%20quantum/" itemprop="about">Code quantum</a></li>
                                             <li><a href="/tag/dead%20like%20me/" itemprop="about">Dead like me</a></li>
-                                            <li><a href="/tag/Le%20transporteur/" itemprop="about">Le transporteur</a></li>
+                                            <li><a href="/tag/downton%20abbey/" itemprop="about">Downton abbey</a></li>
+                                            <li><a href="/tag/le%20transporteur/" itemprop="about">Le transporteur</a></li>
                                             <li><a href="/tag/once%20upon%20a%20time/" itemprop="about">Once upon a time</a></li>
-                                            <li><a href="/tag/sherlock" itemprop="about">Sherlock</a></li>
+                                            <li><a href="/tag/sherlock/" itemprop="about">Sherlock</a></li>
+                                            <li><a href="/tag/super%20hero%20family/" itemprop="about">Super hero family</a></li>
+                                            
                                     </ul>
                                 </li>
 
@@ -527,7 +530,7 @@
                 <!-- shortcut:[Main content] -->
                 <section id="content">
                     {% if isTag %}
-                        <p class="tag-title"><strong>{{ Tag.Title }}</strong></p>
+                        <p class="tag-title"><strong>{{ Tag.Title|title }}</strong></p>
                     {% elseif isSearch %}
                         <p class="search-title">Recherche : <strong>{{ Search.Keyword }}</strong></p>
                     {% endif %}
@@ -673,7 +676,7 @@
                                     <figure class="cover">
                                         <a class="" title="{% if Post.Title is not empty %}{{ Post.Title }}{% endif %}" href="{{ Post.PermaLink }}">
                                             {% if Post.Cover is not empty %}
-                                                <img alt="" src="{{ Post.Cover|resize(222,200)|crop }}" width="222" height="200" alt="" />
+                                                <img alt="" src="{{ Post.Cover|resize(222,200)|crop }}" width="222" height="200" />
                                             {% else %}
                                                 <img src="{{ Custom('custom_default_post_cover')|default('http://assets.over-blog-kiwi.com/themes/34/images/default_cover.jpg')|resize(222,122)|crop }}" width="222" height="122" alt="" />
                                             {% endif %}
