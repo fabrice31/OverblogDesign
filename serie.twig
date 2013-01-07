@@ -559,7 +559,7 @@
                                                 <span class="posted">{{ Lang.Get('Published by') }} {{ Post.Author }}</span>
                                             {% endif %}
                                             {% list Post.Tags %}
-                                                <a href="{{ Tag.Url }}" title="{{ Tag.Title }}" itemprop="keywords">{{ Tag.Title }}</a>{% if not loop.last %}, {% endif %}
+                                                <a href="{{ Tag.Url }}/" title="{{ Tag.Title }}" itemprop="keywords">{{ Tag.Title }}</a>{% if not loop.last %}, {% endif %}
                                             {% endlist %}
                                         </p>
 
