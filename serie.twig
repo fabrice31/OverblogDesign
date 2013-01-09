@@ -25,7 +25,7 @@
             <title>{{Blog.Title}}</title>
             <meta name="description" content="{{ Blog.Description }}" />
             <meta name="robots" content="index,follow" />
-            <meta name="keywords" content="{% list Blog.PostsTags(15, SORT_POSTS_NUMBER_DESC) %}{{ PostsTag.Title }}{% if loop.last == false %}, {% endif %}{%endlist%}" />
+            <meta name="keywords" content="série, télévision, épisode, Chuck, Code quantum, Dead like me, Downton abbey, Transporteur, Once upon a time, Sherlock, Super hero family, Unforgettable" />
         {% endif %}
 
         <!-- Social setting : Facebook, G+ .. -->
@@ -451,6 +451,8 @@
                                             <li><a href="/tag/once%20upon%20a%20time/" itemprop="about">Once upon a time</a></li>
                                             <li><a href="/tag/sherlock/" itemprop="about">Sherlock</a></li>
                                             <li><a href="/tag/super%20hero%20family/" itemprop="about">Super hero family</a></li>
+                                            <li><a href="/tag/unforgettable/" itemprop="about">Unforgettable</a></li>
+
                                         {% list Blog.ListPages %}
                                             <li>
                                                 <a href="{{ ListPage.Url }}">{{ ListPage.Title }}</a>
