@@ -8,19 +8,24 @@
             {% list Posts %}
             <title>{% if Post.Title is not empty %}{{ Post.Title }} - {% elseif Post.Snippet is not empty %}{{ Post.Snippet|truncate(80) }} - {% endif %}{{Blog.Title}}</title>
             <meta name="description" content="{{ Post.Snippet }}" />
-            <meta name="keywords" content="{% list Post.Tags %}{{ Tag.Title }}{% if loop.last == false %}, {% endif %}{% endlist %}" />
-                <meta name="robots" content="index,follow" />
+            <meta name="keywords" content="série, télévision, épisode, {% list Post.Tags %}{{ Tag.Title }}{% if loop.last == false %}, {% endif %}{% endlist %}" />
+            <meta name="robots" content="index,follow" />
             {% endlist %}
         {% elseif isTag and Tag is not empty %}
             <title>{{ Tag.Title|title }} - {{Blog.Title}}</title>
-            <meta name="description" content="{{ Blog.Description }}" />
-            <meta name="keywords" content="{{ Tag.Title|title }}" />
+            <meta name="description" content="{{ Tag.Title|title }} - {{ Blog.Description }}" />
+            <meta name="keywords" content="{{ Tag.Title|title }}, série, télévision, épisode" />
             <meta name="robots" content="index,follow" />
         {% elseif isSearch and Search is not empty %}
             <title>{{ Search|title }} - {{Blog.Title}}</title>
             <meta name="description" content="{{ Blog.Description }}" />
             <meta name="keywords" content="{{ Search|title }}" />
             <meta name="robots" content="noindex" />
+        {% elseif isArchive and Archive is not empty %}
+            <title>{{ Archive.Month }}/{{ Archive.Year }} - {{Blog.Title}}</title>
+            <meta name="description" content="{{ Archive.Month }}/{{ Archive.Year }} - {{ Blog.Description }}" />
+            <meta name="keywords" content="série, télévision, épisode, Chuck, Code quantum, Dead like me, Downton abbey, Transporteur, Once upon a time, Sherlock, Super hero family, Unforgettable" />
+            <meta name="robots" content="index,follow" />
         {% else %}
             <title>{{Blog.Title}}</title>
             <meta name="description" content="{{ Blog.Description }}" />
@@ -577,16 +582,16 @@
                                             {% endif %}
                                             {% if Custom('twitter_username') is not empty %}
                                                 <li class="twt">
-                                                    <a href="http://twitter.com/{{ Custom('twitter_username') }}">Twitter</a>
+                                                    <a href="http://twitter.com/{{ Custom('twitter_username') }}" rel="nofollow">Twitter</a>
                                                     <span>
-                                                        <a href="http://twitter.com/{{ Custom('twitter_username') }}" target="_blank">http://twitter.com/{{ Custom('twitter_username') }}</a>
+                                                        <a href="http://twitter.com/{{ Custom('twitter_username') }}" rel="nofollow" target="_blank">http://twitter.com/{{ Custom('twitter_username') }}</a>
                                                     </span>
                                                 </li>
                                             {% endif %}
                                             <li class="rss">
-                                                <a href="{{ Blog.RssUrl }}">RSS</a>
+                                                <a href="{{ Blog.RssUrl }}" rel="nofollow">RSS</a>
                                                 <span>
-                                                    <a href="{{ Blog.RssUrl }}" target="_blank">{{ Blog.Url }}{{ Blog.RssUrl }}</a>
+                                                    <a href="{{ Blog.RssUrl }}" rel="nofollow" target="_blank">{{ Blog.Url }}{{ Blog.RssUrl }}</a>
                                                 </span>
                                             </li>
                                         </ul>
