@@ -73,8 +73,7 @@
         <link href="https://plus.google.com/104493142924184161356/?rel=author" rel="author" title="A propos de l'éditeur"/>
 
         <!-- shortcut:[Includes] -->
-        <!-- favicon -->
-        <link rel="icon" type="image/png" href="{{ Blog.FaviconUrl }}" />
+        {% favicon %}
 
         <!-- SEO -->
         <meta name="google-site-verification" content="{{ Custom('google_webmaster_id') }}" />
@@ -297,14 +296,15 @@
             .sidebar h3 {font-size: 24px; margin-bottom: 15px; padding-left: 11px;}
             .sidebar .button {margin: 30px 0 0;}
 
-            .sidebar .follow li {background: url(http://assets.over-blog-kiwi.com/themes/34/images/social.png) no-repeat; height: 40px; margin-bottom: 15px; max-width: 100%;}/* http://www.yootheme.com/icons */
-            .sidebar .follow .fb {background-position: left top;}
-            .sidebar .follow .twt {background-position: left center;}
-            .sidebar .follow .rss {background-position: left bottom;}
-            .sidebar .follow a {display: block; max-width: 100%; overflow: hidden; padding-left: 50px; text-overflow: ellipsis; white-space: nowrap;}
-            .sidebar .follow li > a {font-size: 16px;}
-            .sidebar .follow span a {color: #333; font-size: 13px; font-style: italic;}
+            .follow li {background: url(http://assets.over-blog-kiwi.com/themes/34/images/social.png) no-repeat; height: 40px; margin-bottom: 15px; max-width: 100%;}/* http://www.yootheme.com/icons */
+            .follow .fb {background-position: left top;}
+            .follow .twt {background-position: left center;}
+            .follow .rss {background-position: left bottom;}
+            .follow a {display: block; max-width: 100%; overflow: hidden; padding-left: 50px; text-overflow: ellipsis; white-space: nowrap;}
+            .follow li > a {font-size: 16px;}
+            .follow span a {color: #333; font-size: 13px; font-style: italic;}
 
+            .last-posts li {float: left; margin: 1px;}
 
             /* Pagination */
             .pagination { {% if not isSingle and not isSpecial %}margin: 10px 0 40px;{% else %}margin-bottom: 30px;{% endif %} width: {% if isSingle %}600px;{% else %}100%{% endif %}}
@@ -567,34 +567,33 @@
 
                             <div class="sidebar right">
                                 <div class="border"></div>
+
+                                <!-- Last posts -->
+                                <article class="last-posts clearfix">
+                                    <h3>{{ Lang.Get('Last Posts') }}</h3>
+                                    <ul>
+                                        {% list Blog.Posts(10) %}
+                                            {% if Post.Cover is not empty or Custom('post_cover') is not empty %}
+                                                <li>
+                                                    <h4>
+                                                        <a href="{{ Post.Permalink }}" title="{{ Post.Title|title }}">
+                                                            <img src="{% if Post.Cover is not empty %}{{ Post.Cover|resize(130)|crop }}{% else %}{{ Custom('post_cover')|resize(130)|crop }}{% endif %}" alt="{{ Post.Title|title }}" width="130" height="130" />
+                                                        </a>
+                                                    </h4>
+                                                </li>
+                                            {% endif %}
+                                        {% endlist %}
+                                    </ul>
+                                    <div class="clear"></div>
+                                </article>
+
                                 <article>
                                     <!-- Blog owner -->
                                     <h3>{{ Lang.Get('Follow me') }}</h3>
                                     <div class="pad follow">
-                                        <ul>
-                                            {% if Custom('facebook_username') is not empty %}
-                                                <li class="fb">
-                                                    <a href="{{ Custom('facebook_username') }}">Facebook</a>
-                                                    <span>
-                                                        <a href="http://facebook.com/{{ Custom('facebook_username') }}" target="_blank">http://facebook.com/{{ Custom('facebook_username') }}</a>
-                                                    </span>
-                                                </li>
-                                            {% endif %}
-                                            {% if Custom('twitter_username') is not empty %}
-                                                <li class="twt">
-                                                    <a href="http://twitter.com/{{ Custom('twitter_username') }}" rel="nofollow">Twitter</a>
-                                                    <span>
-                                                        <a href="http://twitter.com/{{ Custom('twitter_username') }}" rel="nofollow" target="_blank">http://twitter.com/{{ Custom('twitter_username') }}</a>
-                                                    </span>
-                                                </li>
-                                            {% endif %}
-                                            <li class="rss">
-                                                <a href="{{ Blog.RssUrl }}" rel="nofollow">RSS</a>
-                                                <span>
-                                                    <a href="{{ Blog.RssUrl }}" rel="nofollow" target="_blank">{{ Blog.Url }}{{ Blog.RssUrl }}</a>
-                                                </span>
-                                            </li>
-                                        </ul>
+                                        <div class="g-plusone" data-href="{{Blog.Url}}"></div>
+                                        <div><a href="https://twitter.com/share" class="twitter-share-button"  data-text="{{ Blog.Title }}" data-url="{{ Blog.url }}" data-lang="{{ Blog.Lang }}"{% if Custom('twitter_username') is not empty %} data-via="{{Custom('twitter_username')}}"{% endif %}></a></div>
+                                        <div class="fb-like" data-href="{{ Blog.Url }}" data-send="false" data-layout="button_count" data-width="150" data-show-faces="false"></div>
                                     </div>
                                     <div class="clear"></div>
                                 </article>
@@ -611,7 +610,7 @@
                                     <figure class="cover">
                                         <a class="" title="{% if Post.Title is not empty %}{{ Post.Title }}{% endif %}" href="{{ Post.PermaLink }}">
                                             {% if Post.Cover is not empty %}
-                                                <img alt="" src="{{ Post.Cover|resize(222,200)|crop }}" width="222" height="200" />
+                                                <img alt="{% if Post.Title is not empty %}{{ Post.Title|title }}{% endif %}" src="{{ Post.Cover|resize(222,200)|crop }}" width="222" height="200" />
                                             {% else %}
                                                 <img src="{{ Custom('custom_default_post_cover')|default('http://assets.over-blog-kiwi.com/themes/34/images/default_cover.jpg')|resize(222,122)|crop }}" width="222" height="122" alt="" />
                                             {% endif %}
@@ -695,11 +694,32 @@
                         <span itemprop="name">Serie Maniac</span>
                     </article>
 
-                    <div class="widget left">
+                    <div class="widget left follow">
                         <h3>Réseaux sociaux</h3>
-                            <div class="g-plusone" data-href="{{Blog.Url}}"></div>
-                            <div><a href="https://twitter.com/share" class="twitter-share-button"  data-text="{{ Blog.Title }}" data-url="{{ Blog.url }}" data-lang="{{ Blog.Lang }}"{% if Custom('twitter_username') is not empty %} data-via="{{Custom('twitter_username')}}"{% endif %}></a></div>
-                            <div class="fb-like" data-href="{{ Blog.Url }}" data-send="false" data-layout="button_count" data-width="150" data-show-faces="false"></div>
+                        <ul>
+                            <li class="rss">
+                                <a href="{{ Blog.RssUrl }}">RSS</a>
+                                <span>
+                                    <a href="{{ Blog.RssUrl }}" target="_blank">{{ Blog.Url }}{{ Blog.RssUrl }}</a>
+                                </span>
+                            </li>
+                            {% if Custom('facebook_username') is not empty %}
+                                <li class="fb">
+                                    <a href="{{ Custom('facebook_username') }}">Facebook</a>
+                                    <span>
+                                        <a href="http://facebook.com/{{ Custom('facebook_username') }}" target="_blank">http://facebook.com/{{ Custom('facebook_username') }}</a>
+                                    </span>
+                                </li>
+                            {% endif %}
+                            {% if Custom('twitter_username') is not empty %}
+                                <li class="twt">
+                                    <a href="http://twitter.com/{{ Custom('twitter_username') }}">Twitter</a>
+                                    <span>
+                                        <a href="http://twitter.com/{{ Custom('twitter_username') }}" target="_blank">http://twitter.com/{{ Custom('twitter_username') }}</a>
+                                    </span>
+                                </li>
+                            {% endif %}
+                        </ul>
                     </div>
                     <div class="clear"></div>
                 </div>
