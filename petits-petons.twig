@@ -361,7 +361,7 @@
                                                       {% endif %}
                                                       {% if isSingle == false %} 
                                                           <a href="{{ Post.PermaLink }}#comments" title="Commentaires" class="comments">
-                                                              {{ Post.CommentCount('commentaire', 'commentaires') }}
+                                                              {{ Post.CommentCount('%c commentaire', '%c commentaires') }}
                                                           </a>
                                                       {% endif %}
                                                       {% if Post.Tags is not empty %}
