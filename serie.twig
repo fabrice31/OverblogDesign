@@ -618,7 +618,7 @@
                                         {%  if Post.ShowComments is not empty %}
                                             <span class="comment-count">
                                                 <a title="{{ Lang.Get('comments') }}" href="{{ Post.PermaLink }}#comments">
-                                                    {{ Post.CommentCount(Lang.Get('comment'), Lang.Get('comments')) }}
+                                                    {{ Post.CommentCount('%c commentaire', '%c commentaires') }}
                                                 </a>
                                             </span>
                                         {% endif %}
